@@ -4,6 +4,8 @@ repositorio del curso: https://github.com/platzi/curso-mcp
 
 Docs de Fast MCP https://gofastmcp.com/getting-started/welcome
 
+https://thetalkingapp.medium.com/optimizing-api-output-for-use-as-tools-in-model-context-protocol-mcp-07d93a084fbc
+
 # Clase 1
 
 
