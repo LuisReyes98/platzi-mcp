@@ -1,6 +1,11 @@
-# Clase 1
+# Curso de Model Context Protocol (MCP) en Platzi
 
 repositorio del curso: https://github.com/platzi/curso-mcp
+
+Docs de Fast MCP https://gofastmcp.com/getting-started/welcome
+
+# Clase 1
+
 
 Resumen
 La revolución de la inteligencia artificial no está en los modelos más grandes, sino en la forma en que nos comunicamos con ellos. El Model Context Protocol (MCP) representa un cambio de paradigma en cómo interactuamos con sistemas de IA, transformando desarrolladores en arquitectos de sistemas inteligentes. Este protocolo establece el puente crucial entre nuestro código y los modelos de lenguaje avanzados, abriendo posibilidades que van mucho más allá de simples consultas a ChatGPT.
@@ -109,5 +114,105 @@ Este método es sencillo para implementar y provee una interacción más natural
 ¿Tienes experiencia manejando contextos en tus aplicaciones de inteligencia artificial? ¡Comparte tus comentarios abajo!
 
 
-# Clase 17 Enrutamiento de herramientas con MCP Server
+# Clase 18 Enrutamiento de herramientas con MCP Server
 
+Resumen
+¿Te has preguntado cómo optimizar el uso de múltiples herramientas en un servidor MCP para mejorar tus aplicaciones y procesos? El enrutamiento con MCP Server te permite acceder a diferentes herramientas según las necesidades específicas de tu trabajo, mejorando eficiencia y organización.
+
+¿Qué es el enrutamiento en MCP Server?
+El enrutamiento es una funcionalidad del MCP Server que organiza y administra la manera en que accedes a diversas herramientas o recursos desde una misma interfaz. Funcionan de manera similar a una API, donde tú eliges cuál método utilizar según lo que necesites.
+
+¿Cómo utilizar las herramientas del MCP Server?
+Las herramientas incluidas en MCP Server se configuran fácilmente a través de aplicaciones Python que usan Fast MCP. Puedes crear distintos endpoints, configurar parámetros personalizados y obtener resultados al interactuar con herramientas diversas.
+
+Entre los ejemplos prácticos se encuentran:
+
+Herramienta de chequeo de estado de servidor (get status).
+Recuperación de información de usuario (get user info).
+Función de cálculo de operaciones matemáticas (como raíces cuadradas).
+```python
+# Ejemplo de servidor MCP con Fast MCP
+from fast_mcp import MCPServer
+
+server = MCPServer(name='ServidorMCP')
+
+@server.tool
+def get_status():
+    return "El servidor está ejecutándose correctamente."
+
+@server.tool
+def get_user_info(user_id):
+    return f"Información del usuario {user_id}."
+```
+
+```python
+# Herramienta para raíces cuadradas
+@server.tool
+def calcular_raiz(numero):
+    return numero ** 0.5
+```
+¿Cómo definir múltiples endpoints en MCP Server?
+Si trabajas con varios servicios externos como bases de datos, servicios climáticos u otras APIs, puedes utilizarlos todos desde un mismo servidor mediante el enrutamiento por endpoints.
+
+Cada uno de estos endpoints está vinculado a una URL específica:
+
+weather service: para información climática.
+database service: para consultas de base de datos.
+```python
+
+# Configuración de endpoints múltiples
+tools_endpoints = {
+    "weather_tool": "weather.service.example.com",
+    "database_tool": "database.service.example.com",
+}
+```
+
+Esto permite con facilidad y eficacia decidir a qué servicio se dirige una solicitud específica, optimizando el trabajo con diferentes recursos, aun cuando la ejecución se realice desde una sola herramienta.
+
+¿Cómo comprobar el enrutamiento en MCP Server?
+Puedes verificar fácilmente que tu enrutamiento funcione con diferentes pruebas para cada herramienta y endpoint. Por ejemplo, si pruebas una herramienta llamada "Weather Tool":
+
+```python
+tool_name = "Weather Tool"
+parameters = { "city": "New York" }
+# El resultado debería mostrar conexión a weather.service.example.com
+# Para una base de datos:
+
+tool_name = "Database Tool"
+parameters = { "ID_user": "Amin Espinoza" }
+# El resultado indicaría conexión a database.service.example.com
+```
+
+Estos resultados te permiten confirmar que MCP Server dirige correctamente tus solicitudes según sus configuraciones no importa si surge un error puntual por conexión, lo importante es verificar que la dirección aplicada sea la adecuada.
+
+# Clase 19 Creación de servidor MCP con SERP API para búsqueda web
+
+Resumen
+Crear un sistema de búsqueda web eficiente puede ser sencillo con las herramientas adecuadas. En este contenido aprenderás cómo desarrollar un servidor MCP usando SERP API, un servicio para búsqueda web que permite integraciones rápidas y accesibles. Este recurso gratuito y fácil de configurar aporta versatilidad y potencia a tus proyectos tecnológicos.
+
+¿Qué es SERP API y cómo configurar tu cuenta?
+SERP API es una herramienta gratuita que permite realizar búsquedas web con facilidad, generando resultados efectivos de forma rápida y accesible. Registrarte es sencillo mediante cuenta de GitHub, Gmail o número de teléfono; el proceso de obtención del API key es inmediato:
+
+Ingresa al sitio web de SERP API.
+Selecciona método de registro y autentícate.
+Copia la llave API proporcionada para empezar a usar el servicio.
+¿Cómo configurar SERP API con tu proyecto?
+Integra la API key en tu entorno de desarrollo a través de un archivo .env para garantizar seguridad y accesibilidad en tu configuración:
+
+Crea un archivo .env y agrega tu llave SERP API entre comillas.
+Usa un archivo env-sample como referencia para compartir configuraciones.
+Esta práctica te permite mantener ordenado tu proyecto y salvaguardar tus datos sensibles.
+
+¿Cómo construir un servidor web MCP con Fast MCP y SERP API?
+El desarrollo del servidor incluye módulos básicos y avanzados que potenciarán tus aplicaciones:
+
+Importación de módulos fundamentales como OS, json, HTTPX, Fast MCP Server, y manejo del ambiente.
+Implementación de un método específico para peticiones (make SERP API request).
+Integración de todos los parámetros necesarios para búsquedas generales: consulta, resultados esperados y contexto.
+La importancia del registro (logging) radica en asegurar una transparencia operacional que identifique aciertos y fallos, brindando claridad en todo momento sobre el rendimiento del sistema.
+
+Además, es recomendable considerar documentación multilingüe (español e inglés) para ampliar el alcance de tus aplicaciones y mejorar su accesibilidad global.
+
+Al implementar estas recomendaciones simples y estructuradas, tu servidor MCP estará listo para realizar búsquedas web efectivas con una herramienta poderosa como SERP API.
+
+¿Quieres compartir alguna experiencia implementando un MCP con SERP API o tienes dudas sobre el proceso? ¡Déjanos tu comentario abajo!
