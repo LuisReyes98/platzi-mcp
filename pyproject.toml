@@ -1,0 +1,64 @@
+[project]
+name = "mcp-platzi"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+  "dotenv>=0.9.9",
+  "gunicorn>=23.0.0",
+  "uvicorn>=0.35.0",
+  "httpx>=0.28.1",
+  "fastmcp==2.12.4",
+]
+
+[dependency-groups]
+dev = ["ruff>=0.15.0", "ty>=0.0.15", "types-requests>=2.32.4.20250809"]
+
+[tool.uv.sources]
+layrz-orchestrator-kit = { index = "layrz-private" }
+layrz-gis = { index = "layrz-private" }
+
+[[tool.uv.index]]
+name = "layrz-private"
+url = "https://api.layrz.com/pypi/simple"
+explicit = true
+
+[tool.ruff]
+indent-width = 2
+line-length = 120
+
+exclude = ["**/templates/*", ".venv"]
+
+[tool.ruff.lint]
+ignore = [
+  "F401",   # Unused import
+  "E701",   # Multiple statements on one line
+  "TD003",  # Missing issue link
+  "ANN401", # Allow Any
+]
+
+select = [
+  "I",   # isort
+  "E",
+  "W",   # pycodestyle
+  "F",   # pyflakes
+  "B",   # flakes8-bugbear
+  "TD",  # flake8-todo
+  "DJ",  # flake8-django
+  "DTZ", # flake8-datetimez
+  "T20", # flake8-print # En un futuro
+  "PYI", # flake8-pyi
+  "ANN", # flake8-annotations
+]
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+docstring-code-format = true
+
+[tool.ty.environment]
+python-version = "3.14"
+
+[tool.ty.src]
+exclude = [".venv/", ".ruff_cache/", ".mypy_cache/"]
